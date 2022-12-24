@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject pickUpPrefab;
     public GameObject player;
-    //public GameObject obstacle;
     public AudioClip pickUpSound;
 
     public float speed;
@@ -15,26 +15,26 @@ public class PlayerController : MonoBehaviour
     public Text countText;
     public Text winText;
 
-    //public float spawnRadius = 5;
-    //public float spawnCollisionCheckRadius;
-
     private Rigidbody rb;
     public int count;
+    private static int topScore = 0;
 
     private PauseMenuScript pauseMenuScript;
-    private GameOverMenu gameOverMenu;
 
-    //private NewBehaviourScript
+    [SerializeField] GameObject gameOverMenu;
+    public Text finalScoreText;
+    public Text highScoreText;
 
     void Start()
     {
+        Time.timeScale = 1f;
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
         //Spawner.SpawnObstacles();
         pauseMenuScript = gameObject.GetComponent<PauseMenuScript>();
-        gameOverMenu = gameObject.GetComponent<GameOverMenu>();
+        //gameOverMenu = gameObject.GetComponent<GameOverMenu>();
     }
 
     void FixedUpdate()
@@ -66,13 +66,19 @@ public class PlayerController : MonoBehaviour
         if (player.transform.position.y < 0)
         {
             Debug.Log("Ball has fallen");
-            gameOverMenu.ShowMenu(count);
+            ShowGameOverMenu();
         }
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    gameOverMenu.ShowMenu();
-        //}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (count > topScore)
+            {
+                topScore = count;
+            }
+            print($"Top Score: {topScore}");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            print("The reset button is working");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -108,24 +114,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //private void SpawnObstacles()
-    //{
-    //    //for (int i = 0; i < 20; i++)
-    //    //{
-    //    //    Vector3 randomSpawnPosition = new Vector3(Random.Range(-9, 10), 0f, Random.Range(-9, 10));
-    //    //    Instantiate(obstacle, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0, 360), 0f));
+    public void ShowGameOverMenu()
+    {
+        gameOverMenu.SetActive(true);
+        Time.timeScale = 0f;
 
-    //    //    //if (!Physics.CheckSphere(randomSpawnPosition, spawnCollisionCheckRadius))
-    //    //    //{
-    //    //    //    Instantiate(obstacle, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0, 360), 0f));
-    //    //    //}
-    //    //}
+        if (count > topScore)
+        {
+            topScore = count;
+        }
 
-    //    Vector3 randomSpawnPosition = new Vector3(Random.Range(-9, 10), 0f, Random.Range(-9, 10));
-    //    Instantiate(obstacle, randomSpawnPosition, Quaternion.Euler(0f, Random.Range(0, 360), 0f));
+        SetGameOverMenuTexts();
+    }
 
-    //}
+    void SetGameOverMenuTexts()
+    {
+        finalScoreText.text = $"{count} POINTS";
+        highScoreText.text = $"HIGH SCORE: {topScore} POINTS";
+    }
 
-    //if (Input.GetKeyDown("space")) {
+    public void RestartGame()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        print("The reset button is working");
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
 
 }

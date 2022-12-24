@@ -1,30 +1,26 @@
 ﻿<Properties StartupConfiguration="{F4CFF16D-81C0-3AAC-5FD6-D64DC2F7791D}|">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="4915f3c9-f339-4a85-98db-a9fa2ab9d1ee" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="31" Column="19" />
       <File FileName="Assets/Scripts/CameraController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Rotator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="47" Column="39" />
+      <File FileName="Assets/Scripts/Rotator.cs" />
       <File FileName="Assets/Scripts/PauseMenuScript.cs" Line="13" Column="9" />
       <File FileName="Assets/Scripts/Spawner.cs" Line="24" Column="18" />
-      <File FileName="Assets/Scripts/GameOverMenu.cs" Line="7" Column="39" />
+      <File FileName="Assets/Scripts/GameOverMenu.cs" Line="51" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="HW02" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True" />
-            </Node>
-          </Node>
+          <Node name="HW02" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3683dc77-89c6-4fa0-b4ea-113ba06aa242" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

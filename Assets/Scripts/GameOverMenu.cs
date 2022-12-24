@@ -35,20 +35,16 @@ public class GameOverMenu : MonoBehaviour
 
     public void Retry()
     {
-        //pauseMenu.SetActive(false);
-        //Time.timeScale = 1f;
-        //Application.load
-        //Application.LoadLevel(0);
         m_restart = true;
-
-
     }
 
     private void Update()
     {
         if (m_restart)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            m_restart = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            print("The reset button is working");
         }
     }
 
